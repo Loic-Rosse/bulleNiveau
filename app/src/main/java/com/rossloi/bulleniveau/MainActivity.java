@@ -14,10 +14,9 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private SensorManager mgr;
-    private TextView TV_axeX;
-    private TextView TV_axeY;
     private Sensor gravitySensor;
     private ImageView IV_Carre;
+    private int Screen_Left, Screen_Right, Screen_Top, Screen_Bottom;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
         mgr = (SensorManager) getSystemService(SENSOR_SERVICE);
         gravitySensor = mgr.getDefaultSensor(Sensor.TYPE_GRAVITY);
         mgr.registerListener(gravitySensorListener, gravitySensor, mgr.SENSOR_DELAY_FASTEST);
+        Screen_Top = 0;
+        Screen_Left = 0;
+        Screen_Right = this.getWindowManager().getDefaultDisplay().getWidth();
+        Screen_Bottom = this.getWindowManager().getDefaultDisplay().getHeight();
     }
+
 
     // Création d'un listener
     private SensorEventListener gravitySensorListener = new SensorEventListener() {
@@ -46,12 +50,32 @@ public class MainActivity extends AppCompatActivity {
             float y = sensorEvent.values[1];
 
             // Obtenir la position
-            float posY = IV_Carre.getY();
-            float posX = IV_Carre.getX();
+            float posCarreY = IV_Carre.getY();
+            float posCarreX = IV_Carre.getX();
+
+            //float posRectY = IV_Rectangle.getY();
+            //float posRectX = IV_Rectangle.getX();
 
             // Modifier la position
-            IV_Carre.setX(posX - x);
-            IV_Carre.setY(posY + y);
+            IV_Carre.setX(posCarreX - x * 2);
+            IV_Carre.setY(posCarreY + y * 2);
+
+            // Détection de la partie inférieure de l'écran
+            if (posCarreY > Screen_Bottom - (IV_Carre.getHeight() + 100))
+                IV_Carre.setY((float) (posCarreY - 0.4));
+
+            // Détection de la partie supérieure de l'écran
+            if (posCarreY < Screen_Top )
+                IV_Carre.setY((float) (posCarreY + 0.4));
+
+            // Détection de la partie gauche de l'écran
+            if (posCarreX < Screen_Left )
+                IV_Carre.setX((float) (posCarreX + 0.4));
+
+            // Détection de la partie droite de l'écran
+            if (posCarreX > Screen_Right - IV_Carre.getWidth())
+                IV_Carre.setX((float) (posCarreX - 0.4));
+
         }
 
         @Override

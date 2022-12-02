@@ -8,9 +8,10 @@
 
     <ImageView
         android:id="@+id/carre"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="83dp"
+        android:layout_height="89dp"
         android:src="@drawable/carre"
-        />
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="89dp" />
 
 </android.support.constraint.ConstraintLayout>
