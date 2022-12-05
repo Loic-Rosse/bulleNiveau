@@ -14,4 +14,15 @@
         tools:layout_editor_absoluteX="164dp"
         tools:layout_editor_absoluteY="89dp" />
 
+    <ImageView
+        android:id="@+id/carreCentral"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:src="@drawable/carre_central"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 </android.support.constraint.ConstraintLayout>
