@@ -97,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 IV_Carre.setY((float) (posCarreY + 0.4));
             }
 
+            /**
+             * Test pour la partie gauche et droite du carré central
+             */
             if ((posCarreX + IV_Carre.getWidth()) >= posCarreCentralX
                     && posCarreY + IV_Carre.getHeight() > posCarreCentralY
                     && posCarreY < (posCarreCentralY + IV_CarreCentral.getHeight())
